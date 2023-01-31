@@ -7,7 +7,7 @@ import { useRef, useState } from "react";
 
 const numClientPages = SERVER_PAGE_SIZE / CLIENT_PAGE_SIZE;
 
-const Page1WithPagination = () => {
+const PageWithCsrPagination = () => {
   const [serverPage, setServerPage] = useState<IPage | null>();
   const [serverPageIndex, setServerPageIndex] = useState(0);
   const [clientPageIndex, setClientPageIndex] = useState(0);
@@ -39,16 +39,10 @@ const Page1WithPagination = () => {
 
   return (
     <div>
-      <h2>Page1WithPagination</h2>
+      <h1>PageWithPagination</h1>
       <br />
+      <h2 style={{ color: "lightblue" }}>Server page</h2>
       <h3>server page index</h3>
-      <input
-        type="number"
-        placeholder="server page index"
-        ref={inputElServerPageIndex}
-        defaultValue={serverPageIndex}
-      />
-      <br />
       <button
         onClick={() => {
           const index = Number(
@@ -60,6 +54,15 @@ const Page1WithPagination = () => {
         Get server page data
       </button>
       <br />
+      <input
+        type="number"
+        placeholder="server page index"
+        ref={inputElServerPageIndex}
+        defaultValue={serverPageIndex}
+      />
+      <br />
+
+      <br />
       <GenericFetchData
         url={getProductsApiUrl(serverPageIndex)}
         validate={null}
@@ -70,6 +73,7 @@ const Page1WithPagination = () => {
       />
       <br />
       <br />
+      <h2 style={{ color: "lightblue" }}>Client page</h2>
       <button onClick={backHandler}>Back client page</button>
       <span>&nbsp;&nbsp;&nbsp;</span>
       <button onClick={forwardHandler}>Forward client page</button>
@@ -85,4 +89,4 @@ const Page1WithPagination = () => {
   );
 };
 
-export default Page1WithPagination;
+export default PageWithCsrPagination;
