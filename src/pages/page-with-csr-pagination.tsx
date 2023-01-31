@@ -1,49 +1,23 @@
-import { CLIENT_PAGE_SIZE, SERVER_PAGE_SIZE } from "@/common/constants";
 import { getProductsApiUrl } from "@/common/urls";
+import ClientPagination from "@/components/gen-ui/client-pagination";
 import GenericFetchData from "@/components/gen-ui/generic-fetch-data";
 import IPage from "@/types/i-page";
-import IProduct from "@/types/i-product";
+import { Button } from "@mui/material";
 import { useRef, useState } from "react";
 
-const numClientPages = SERVER_PAGE_SIZE / CLIENT_PAGE_SIZE;
 
 const PageWithCsrPagination = () => {
   const [serverPage, setServerPage] = useState<IPage | null>();
   const [serverPageIndex, setServerPageIndex] = useState(0);
-  const [clientPageIndex, setClientPageIndex] = useState(0);
   const inputElServerPageIndex = useRef(null);
-
-  function getCurrentClientPage(): IProduct[] {
-    const indexStart = clientPageIndex * CLIENT_PAGE_SIZE;
-    const indexEnd = (clientPageIndex + 1) * CLIENT_PAGE_SIZE;
-    return serverPage?.products
-      ? serverPage?.products.slice(indexStart, indexEnd)
-      : [];
-  }
-
-  function backHandler() {
-    if (clientPageIndex > 0) {
-      setClientPageIndex(clientPageIndex - 1);
-    }
-  }
-
-  function forwardHandler() {
-    if (clientPageIndex < numClientPages - 1) {
-      setClientPageIndex(clientPageIndex + 1);
-    }
-  }
-
-  const productsElems = getCurrentClientPage().map((product, i) => (
-    <li>{product.productName}</li>
-  ));
 
   return (
     <div>
-      <h1>PageWithPagination</h1>
+      <h1>Page With CSR Pagination</h1>
       <br />
       <h2 style={{ color: "lightblue" }}>Server page</h2>
-      <h3>server page index</h3>
-      <button
+      
+      <Button variant="outlined"
         onClick={() => {
           const index = Number(
             (inputElServerPageIndex.current! as HTMLInputElement).value
@@ -51,8 +25,10 @@ const PageWithCsrPagination = () => {
           setServerPageIndex(index);
         }}
       >
-        Get server page data
-      </button>
+        Load server page
+      </Button>
+      <h3>server page index</h3>
+      <p>Directly access last page using -1</p>
       <br />
       <input
         type="number"
@@ -67,24 +43,13 @@ const PageWithCsrPagination = () => {
         url={getProductsApiUrl(serverPageIndex)}
         validate={null}
         setData={(data: IPage) => setServerPage(data)}
-        successComponent={<p>Success</p>}
-        errorComponent={<p>Error</p>}
+        successComponent={<p style={{color:'green'}}>Success</p>}
+        errorComponent={<p style={{color:'red'}}>Error</p>}
         loadingComponent={<p>Loading ...</p>}
       />
       <br />
       <br />
-      <h2 style={{ color: "lightblue" }}>Client page</h2>
-      <button onClick={backHandler}>Back client page</button>
-      <span>&nbsp;&nbsp;&nbsp;</span>
-      <button onClick={forwardHandler}>Forward client page</button>
-      <p>current client page index : {clientPageIndex}</p>
-      <p>
-        current client page items :
-        {getCurrentClientPage() ? getCurrentClientPage()?.length : ""}
-      </p>
-      <br />
-      <h3>products</h3>
-      <ul>{productsElems}</ul>
+      {serverPage && <ClientPagination serverPage={serverPage}/>}
     </div>
   );
 };
