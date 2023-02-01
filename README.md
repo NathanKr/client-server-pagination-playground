@@ -8,7 +8,11 @@ This problem is interesting when all info is on the client and you want to go ov
 www.checkyourtechskills.com is a next.js application with mongodb as data base. so i will start with next.js but to make it simple the server will store the data on json file or fetch from jsonplaceholder
 
 <h2>Data fetching strategy</h2>
+
+<h3>PageWithCsrPagination</h3>
 <ul>
-<li>A simple strategy with CSR</li>
-<li>A strategy for ssg\ssr\isr</li>
+<li>Here we have page on the server with 100 products and page on the client with 10 products</li>
+<li>The client access the server end point /api/products/server-page?server_page_index e.g. /api/products/server-page?0 for the first server page. 100 items are fetched and the client render 10</li>
+<li>The user can choose the server page index and use backward \ forward on the client page index</li>
 </ul>
+

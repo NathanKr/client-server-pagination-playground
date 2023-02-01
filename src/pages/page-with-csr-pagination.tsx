@@ -10,8 +10,6 @@ const PageWithCsrPagination = () => {
   const [serverPageIndex, setServerPageIndex] = useState(0);
   const inputElServerPageIndex = useRef(null);
 
-  console.log(serverPage);
-  
 
   return (
     <div>
