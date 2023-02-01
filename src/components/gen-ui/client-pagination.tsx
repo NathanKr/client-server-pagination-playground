@@ -1,4 +1,4 @@
-import { CLIENT_PAGE_SIZE, SERVER_PAGE_SIZE } from "@/common/constants";
+import { CLIENT_PAGE_SIZE, SERVER_PAGE_SIZE } from "@/logic/common/constants";
 import IPage from "@/types/i-page";
 import IProduct from "@/types/i-product";
 import { Button } from "@mui/material";
@@ -38,9 +38,13 @@ const ClientPagination: FC<IProps> = ({ serverPage }) => {
   return (
     <div>
       <h2 style={{ color: "lightblue" }}>ClientPagination</h2>
-      <Button variant="outlined" onClick={backHandler}>Back client page</Button>
+      <Button variant="outlined" onClick={backHandler}>
+        Back client page
+      </Button>
       <span>&nbsp;&nbsp;&nbsp;</span>
-      <Button variant="outlined" onClick={forwardHandler}>Forward client page</Button>
+      <Button variant="outlined" onClick={forwardHandler}>
+        Forward client page
+      </Button>
       <p>current client page index : {clientPageIndex}</p>
       <p>
         current client page items :

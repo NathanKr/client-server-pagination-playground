@@ -10,5 +10,5 @@ www.checkyourtechskills.com is a next.js application with mongodb as data base. 
 <h2>Data fetching strategy</h2>
 <ul>
 <li>A simple strategy with CSR</li>
-<li>A complex strategy that start from last page might bring it using SSR - using getServerSideProps and all the other using CSR</li>
+<li>A strategy for ssg\ssr\isr</li>
 </ul>
