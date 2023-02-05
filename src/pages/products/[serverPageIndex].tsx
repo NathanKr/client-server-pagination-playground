@@ -2,7 +2,9 @@ import Products from "@/components/gen-ui/products";
 import usePageBackForward from "@/hooks/use-page-back-forward";
 import { getNumProductPages, getProductPage } from "@/logic/server/utils";
 import IPage from "@/types/i-page";
+import { Button } from "@mui/material";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import Link from "next/link";
 
 interface IProps {
   serverPage: IPage;
@@ -53,6 +55,21 @@ const PageWithSsgPagination: NextPage<IProps> = ({
   return (
     <>
       <h1>Page from server</h1>
+      <h2>#pages : {numServerPages}</h2>
+      <h3>serverPageIndex : {serverPageIndex}</h3>
+      <Button onClick={forwardHandler}>Forward server page index</Button>
+      <br />
+      <Button onClick={backHandler}>Backward server page index</Button>
+      <br />
+      <h4>Issues</h4>
+      <p style={{ color: "red" }}>
+        Following link , not clear why - looks like text
+      </p>
+      <Link href={`/products/${serverPageIndex}`}>
+        Navigate to page by index
+      </Link>
+      <br />
+      <br />
       <Products products={serverPage.products} />
     </>
   );

@@ -24,6 +24,6 @@ www.checkyourtechskills.com is a next.js application with mongodb as data base. 
 
 <h3>Open issues</h3>
 <ul>
-<li>PageWithSsgPagination - missing link to pass between pages . currently it point to http://localhost:3000/products/0 </li>
+<li>PageWithSsgPagination : i need first to change index then click on the link. can i do it in one click ?? </li>
 <li>PageWithSsgPagination - missing isr. to simulate dynamic info e.g. like in comment or quiz results</li>
 <ul>

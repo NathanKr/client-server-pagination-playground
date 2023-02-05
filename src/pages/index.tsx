@@ -12,7 +12,7 @@ const Home : NextPage = () => {
       {/* </MuiLink> */}
       <br />
       <Link href="/products/0">
-        Navigate to page with SSG pagination - first server page
+        Navigate to page with SSG pagination
       </Link>
     </div>
   );
