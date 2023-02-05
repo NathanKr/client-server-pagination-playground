@@ -66,7 +66,7 @@ const PageWithSsgPagination: NextPage<IProps> = ({
         Following link , not clear why - looks like text
       </p>
       <Link href={`/products/${serverPageIndex}`}>
-        Navigate to page by index
+        Navigate to page index : {serverPageIndex}
       </Link>
       <br />
       <br />
