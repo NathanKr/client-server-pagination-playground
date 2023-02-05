@@ -4,8 +4,9 @@ import GenericFetchData from "@/components/gen-ui/generic-fetch-data";
 import IPage from "@/types/i-page";
 import { Button } from "@mui/material";
 import { useRef, useState } from "react";
+import { NextPage } from "next";
 
-const PageWithCsrPagination = () => {
+const PageWithCsrPagination : NextPage = () => {
   const [serverPage, setServerPage] = useState<IPage | null>();
   const [serverPageIndex, setServerPageIndex] = useState(0);
   const inputElServerPageIndex = useRef(null);
@@ -13,7 +14,7 @@ const PageWithCsrPagination = () => {
 
   return (
     <div>
-      <h1>Page With CSR Pagination</h1>
+      <h1>Page with client pagination and server pagination</h1>
       <br />
       <h2 style={{ color: "lightblue" }}>Server page</h2>
 

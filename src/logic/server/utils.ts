@@ -1,7 +1,24 @@
 import IGetProducts from "@/types/i-get-products";
+import IPage from "@/types/i-page";
 import { HttpStatusCode } from "axios";
 import p from "data/products";
 import { SERVER_PAGE_SIZE } from "../common/constants";
+
+export function getProductPage(serverPageIndex: number): IPage {
+  let page: IPage = {
+    products: [],
+  };
+
+  const indexStart = serverPageIndex * SERVER_PAGE_SIZE;
+  const indexEnd = (serverPageIndex + 1) * SERVER_PAGE_SIZE; // end not incliuding
+  page.products = p.slice(indexStart, indexEnd);
+
+  return page;
+}
+
+export function getNumProductPages() : number{
+    return Math.ceil(p.length / SERVER_PAGE_SIZE)
+}
 
 export function getProducts(serverPageIndex?: string): IGetProducts {
   if (!serverPageIndex) {
@@ -21,11 +38,10 @@ export function getProducts(serverPageIndex?: string): IGetProducts {
   }
 
   // --- ready for slice
-  const indexStart = serverPageIndexNumber * SERVER_PAGE_SIZE;
-  const indexEnd = (serverPageIndexNumber + 1) * SERVER_PAGE_SIZE; // end not incliuding
-  const p_slice = p.slice(indexStart, indexEnd);
+  const page = getProductPage(serverPageIndexNumber);
+
   return {
     status: HttpStatusCode.Ok,
-    products: p_slice
-  }
+    products: page.products,
+  };
 }

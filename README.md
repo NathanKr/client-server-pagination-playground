@@ -16,3 +16,14 @@ www.checkyourtechskills.com is a next.js application with mongodb as data base. 
 <li>The user can choose the server page index and use backward \ forward on the client page index</li>
 </ul>
 
+<h3>PageWithSsgPagination</h3>
+<ul>
+<li>we will split the products to 100 products per page on build time , thus SSG - getStaticProps</li>
+<li>we will access these pre rendered pages using dynamic routing - getStaticPaths</li>
+</ul>
+
+<h3>Open issues</h3>
+<ul>
+<li>PageWithSsgPagination - missing link to pass between pages . currently it point to http://localhost:3000/products/0 </li>
+<li>PageWithSsgPagination - missing isr. to simulate dynamic info e.g. like in comment or quiz results</li>
+<ul>
