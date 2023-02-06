@@ -13,8 +13,11 @@ interface IProps {
 const numClientPages = SERVER_PAGE_SIZE / CLIENT_PAGE_SIZE;
 
 const ClientPagination: FC<IProps> = ({ serverPage }) => {
-  const [clientPageIndex, backHandler, forwardHandler] =
-    usePageBackForward(numClientPages);
+  const {
+    pageIndex: clientPageIndex,
+    backHandler,
+    forwardHandler,
+  } = usePageBackForward(numClientPages);
 
   function getCurrentClientPage(): IProduct[] {
     const indexStart = clientPageIndex * CLIENT_PAGE_SIZE;

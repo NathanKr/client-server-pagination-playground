@@ -1,8 +1,10 @@
 import { useState } from "react";
 
-export default function usePageBackForward(
-  numPages: number
-): [number, () => void, () => void] {
+export default function usePageBackForward(numPages: number): {
+  pageIndex: number;
+  backHandler: () => void;
+  forwardHandler: () => void;
+} {
   const [pageIndex, setPageIndex] = useState(0);
 
   function backHandler() {
@@ -17,5 +19,5 @@ export default function usePageBackForward(
     }
   }
 
-  return [pageIndex, backHandler, forwardHandler];
+  return { pageIndex, backHandler, forwardHandler };
 }

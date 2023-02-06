@@ -50,8 +50,11 @@ const PageWithSsgPagination: NextPage<IProps> = ({
   serverPage,
   numServerPages,
 }) => {
-  const [serverPageIndex, backHandler, forwardHandler] =
-    usePageBackForward(numServerPages);
+  const {
+    pageIndex: serverPageIndex,
+    backHandler,
+    forwardHandler,
+  } = usePageBackForward(numServerPages);
   return (
     <>
       <h1>Page from server</h1>
