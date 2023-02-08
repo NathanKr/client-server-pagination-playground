@@ -1,26 +1,25 @@
 import Products from "@/components/gen-ui/products";
-import usePageBackForward from "@/hooks/use-page-back-forward";
 import { getNumProductPages, getProductPage } from "@/logic/server/utils";
 import IPage from "@/types/i-page";
-import { Button } from "@mui/material";
+import { Button, Pagination } from "@mui/material";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import { useRouter } from "next/router";
 
 interface IProps {
   serverPage: IPage;
   numServerPages: number;
-  serverPageIndex:number;
-  isSuccess:boolean;
+  serverPageIndex: number;
+  isSuccess: boolean;
 }
 
 export const getStaticProps: GetStaticProps = (context) => {
-  const { serverPageIndex : serverPageIndexRaw } = context.params as any;
+  const { serverPageIndex: serverPageIndexRaw } = context.params as any;
 
   let props: IProps = {
     serverPage: { products: [] },
     numServerPages: getNumProductPages(),
     serverPageIndex: -1,
-    isSuccess: true
+    isSuccess: true,
   };
 
   props.serverPageIndex = parseInt(serverPageIndexRaw);
@@ -30,7 +29,6 @@ export const getStaticProps: GetStaticProps = (context) => {
   } else {
     props.serverPage = getProductPage(props.serverPageIndex);
   }
-
 
   return {
     props, // will be passed to the page component as props
@@ -59,13 +57,21 @@ const PageWithSsgPagination: NextPage<IProps> = ({
   serverPage,
   numServerPages,
   serverPageIndex,
-  isSuccess
+  isSuccess,
 }) => {
   const router = useRouter();
-  
 
-  if(!isSuccess){
-    return <p style={{color:'red'}}>Server error</p>
+  const handleChange = (e: any, pageNumber: number) => {
+    const newServerPageIndex = pageNumber - 1;
+    navigate(newServerPageIndex);
+  };
+
+  function navigate(newPageIndex: number): void {
+    router.push(`/products/${newPageIndex}`);
+  }
+
+  if (!isSuccess) {
+    return <p style={{ color: "red" }}>Server error</p>;
   }
 
   return (
@@ -73,14 +79,40 @@ const PageWithSsgPagination: NextPage<IProps> = ({
       <h1>Page from server</h1>
       <h2>#pages : {numServerPages}</h2>
       <h3>serverPageIndex : {serverPageIndex}</h3>
-      <Button onClick={() => {
-        const newServerPageIndex = serverPageIndex+1;
-        router.push(`/products/${newServerPageIndex}`)
-      }}>Increment and navigate</Button>
-      <Button onClick={() => {
-        const newServerPageIndex = serverPageIndex-1;
-        router.push(`/products/${newServerPageIndex}`)
-      }}>Decrement and navigate</Button>
+      {/* <Button
+        onClick={() => {
+          const newServerPageIndex = serverPageIndex + 1;
+          navigate(newServerPageIndex);
+        }}
+      >
+        Increment and navigate
+      </Button>
+      <Button
+        onClick={() => {
+          const newServerPageIndex = serverPageIndex - 1;
+          navigate(newServerPageIndex);
+        }}
+      >
+        Decrement and navigate
+      </Button> */}
+      <br />
+      <div
+        style={{
+          padding: "3px",
+          backgroundColor: "lightgray",
+          display: "inline-block",
+        }}
+      >
+        <Pagination
+          count={numServerPages}
+          color="secondary"
+          size="large"
+          page={serverPageIndex + 1}
+          variant="outlined"
+          shape="rounded"
+          onChange={handleChange}
+        />
+      </div>
       <br />
       <br />
       <Products products={serverPage.products} />

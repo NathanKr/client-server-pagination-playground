@@ -20,4 +20,10 @@ www.checkyourtechskills.com is a next.js application with mongodb as data base. 
 <ul>
 <li>we will split the products to 100 products per page on build time , thus SSG - getStaticProps</li>
 <li>we will access these pre rendered pages using dynamic routing - getStaticPaths</li>
+<li>i am using Pagination from mui which is nice. my two buttons are thus disabled</li>
+</ul>
+
+<h3>Open issues</h3>
+<ul>
+<li>currently i brut force adding background to pagination becuause it is almost not shown in light mode. there must be a better way<li>
 </ul>
