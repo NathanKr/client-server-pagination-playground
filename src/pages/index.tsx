@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Link as MuiLink } from "@mui/material";
 import { NextPage } from "next";
 
 const Home : NextPage = () => {

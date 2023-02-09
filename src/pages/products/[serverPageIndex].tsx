@@ -1,4 +1,5 @@
-import Products from "@/components/gen-ui/products";
+import ResponsiveMuiPagination from "@/components/gen-ui/ResponsiveMuiPagination";
+import Products from "@/components/products";
 import { getNumProductPages, getProductPage } from "@/logic/server/utils";
 import IPage from "@/types/i-page";
 import { Button, Pagination } from "@mui/material";
@@ -103,14 +104,10 @@ const PageWithSsgPagination: NextPage<IProps> = ({
           display: "inline-block",
         }}
       >
-        <Pagination
+        <ResponsiveMuiPagination
           count={numServerPages}
-          color="secondary"
-          size="large"
           page={serverPageIndex + 1}
-          variant="outlined"
-          shape="rounded"
-          onChange={handleChange}
+          handleChange={handleChange}
         />
       </div>
       <br />

@@ -1,16 +1,15 @@
 import { getProductsApiUrl } from "@/logic/common/urls";
-import ClientPagination from "@/components/gen-ui/client-pagination";
+import ClientPagination from "@/components/client-pagination";
 import GenericFetchData from "@/components/gen-ui/generic-fetch-data";
 import IPage from "@/types/i-page";
 import { Button } from "@mui/material";
 import { useRef, useState } from "react";
 import { NextPage } from "next";
 
-const PageWithCsrPagination : NextPage = () => {
+const PageWithCsrPagination: NextPage = () => {
   const [serverPage, setServerPage] = useState<IPage | null>();
   const [serverPageIndex, setServerPageIndex] = useState(0);
   const inputElServerPageIndex = useRef(null);
-
 
   return (
     <div>
