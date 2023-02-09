@@ -21,6 +21,7 @@ www.checkyourtechskills.com is a next.js application with mongodb as data base. 
 <li>we will split the products to 100 products per page on build time , thus SSG - getStaticProps</li>
 <li>we will access these pre rendered pages using dynamic routing - getStaticPaths</li>
 <li>i am using Pagination from mui which is nice. my two buttons are thus disabled</li>
+<li>mui Pagination component does not support responsivness out of the box so i have implemented it in ResponsiveMuiPagination using useMediaQuery</li>
 </ul>
 
 <h3>Open issues</h3>

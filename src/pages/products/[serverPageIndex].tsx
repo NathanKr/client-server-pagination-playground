@@ -1,4 +1,4 @@
-import ResponsiveMuiPagination from "@/components/gen-ui/ResponsiveMuiPagination";
+import ResponsiveMuiPagination from "@/components/gen-ui/responsive-mui-pagination";
 import Products from "@/components/products";
 import { getNumProductPages, getProductPage } from "@/logic/server/utils";
 import IPage from "@/types/i-page";
